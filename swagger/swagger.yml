@@ -100,6 +100,59 @@ paths:
           description: '{string} delete success!'
         "403":
           description: objectId is empty
+  /test/getAESstr:
+    get:
+      tags:
+      - test
+      description: 获取AES加密串
+      operationId: TestController.加密
+      parameters:
+      - in: query
+        name: str
+        description: 需要加密的字符串
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{"code":"200","data":{"newStr":""},"msg":"OK"}'
+  /test/getpwd:
+    post:
+      tags:
+      - test
+      description: Logs out current logged in user session
+      operationId: TestController.解密
+      parameters:
+      - in: body
+        name: login_name
+        description: 登陆名
+        required: true
+        schema:
+          type: string
+        type: string
+      - in: body
+        name: passwd
+        description: aes加密串
+        required: true
+        schema:
+          type: string
+        type: string
+      - in: body
+        name: cid
+        description: 验证码id
+        required: true
+        schema:
+          type: string
+        type: string
+      - in: body
+        name: code
+        description: 验证码
+        required: true
+        schema:
+          type: string
+        type: string
+      responses:
+        "200":
+          description: '{"code":"200","data":{"pass":""},"msg":"操作成功！"}'
   /user/:
     get:
       tags:
